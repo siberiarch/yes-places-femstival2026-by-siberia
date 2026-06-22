@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yes-Place — FEMSTIVAL 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@300;400;600;700;900&family=Playfair+Display:ital,wght@0,700;1,400;1,700&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --coral:  #CC5A42;
+  --coral-dark: #A83828;
+  --coral-light: #DF8B74;
+  --olive:  #6B7040;
+  --olive-light: #8A9052;
+  --brown:  #3A2B1A;
+  --tan:    #C4956A;
+  --cream:  #E8D5B8;
+  --yellow-cream: #F0E8C0;
+  --sage:   #9FBFBE;
+  --off-white: #FAF7F2;
+  --tile-bg: #CC5A42;
+  --tile-stroke: #A83828;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Barlow', Arial, sans-serif;
+  font-weight: 300;
+  background: var(--off-white);
+  color: var(--brown);
+  overflow-x: hidden;
+}
+
+/* ─── TILE SVG DATA URI (shared) ─── */
+:root {
+  --tile-svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23CC5A42'/%3E%3Cpath d='M50 4 L96 50 L50 96 L4 50 Z' fill='none' stroke='%23A83828' stroke-width='1.5'/%3E%3Cpath d='M50 20 L80 50 L50 80 L20 50 Z' fill='none' stroke='%23A83828' stroke-width='1'/%3E%3Ccircle cx='50' cy='50' r='8' fill='none' stroke='%23A83828' stroke-width='1'/%3E%3Ccircle cx='50' cy='50' r='3.5' fill='%23A83828'/%3E%3Cellipse cx='50' cy='41' rx='2.5' ry='4.5' fill='%23A83828'/%3E%3Cellipse cx='50' cy='59' rx='2.5' ry='4.5' fill='%23A83828'/%3E%3Cellipse cx='41' cy='50' rx='4.5' ry='2.5' fill='%23A83828'/%3E%3Cellipse cx='59' cy='50' rx='4.5' ry='2.5' fill='%23A83828'/%3E%3Cellipse cx='44.5' cy='44.5' rx='2.2' ry='4' transform='rotate(-45 44.5 44.5)' fill='%23A83828'/%3E%3Cellipse cx='55.5' cy='44.5' rx='2.2' ry='4' transform='rotate(45 55.5 44.5)' fill='%23A83828'/%3E%3Cellipse cx='44.5' cy='55.5' rx='2.2' ry='4' transform='rotate(45 44.5 55.5)' fill='%23A83828'/%3E%3Cellipse cx='55.5' cy='55.5' rx='2.2' ry='4' transform='rotate(-45 55.5 55.5)' fill='%23A83828'/%3E%3Crect x='0' y='0' width='6' height='6' fill='%23A83828'/%3E%3Crect x='94' y='0' width='6' height='6' fill='%23A83828'/%3E%3Crect x='0' y='94' width='6' height='6' fill='%23A83828'/%3E%3Crect x='94' y='94' width='6' height='6' fill='%23A83828'/%3E%3Ccircle cx='50' cy='4' r='2' fill='%23A83828'/%3E%3Ccircle cx='96' cy='50' r='2' fill='%23A83828'/%3E%3Ccircle cx='50' cy='96' r='2' fill='%23A83828'/%3E%3Ccircle cx='4' cy='50' r='2' fill='%23A83828'/%3E%3C/svg%3E");
+}
+
+/* ─── HERO ─── */
+.hero {
+  min-height: 100vh;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.hero-tile-overlay {
+  position: absolute;
+  inset: 0;
+  background-color: var(--tile-bg);
+  background-image: var(--tile-svg);
+  background-size: 100px 100px;
+  opacity: 1;
+  animation: tileFadeIn 1.2s ease both;
+}
+
+@keyframes tileFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(160deg, rgba(58,43,26,0.72) 0%, rgba(58,43,26,0.45) 60%, rgba(107,112,64,0.3) 100%);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 40px 24px;
+  max-width: 1040px;
+  animation: heroContentIn 1s 0.3s ease both;
+}
+
+@keyframes heroContentIn {
+  from { opacity: 0; transform: translateY(28px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.hero-festival-tag {
+  font-family: 'League Spartan', sans-serif;
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--cream);
+  opacity: 0.75;
+  margin-bottom: 32px;
+  display: block;
+}
+
+.hero-yes {
+  font-family: 'League Spartan', sans-serif;
+  font-size: clamp(72px, 14vw, 148px);
+  font-weight: 900;
+  line-height: 0.9;
+  color: var(--yellow-cream);
+  display: block;
+  letter-spacing: -0.02em;
+}
+
+.hero-place {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(64px, 12vw, 132px);
+  font-weight: 400;
+  font-style: italic;
+  line-height: 0.95;
+  color: var(--cream);
+  display: block;
+  letter-spacing: -0.01em;
+  margin-bottom: 40px;
+}
+
+.hero-subtitle {
+  font-family: 'League Spartan', sans-serif;
+  font-size: clamp(13px, 2vw, 16px);
+  font-weight: 300;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--cream);
+  opacity: 0.85;
+  line-height: 1.8;
+  margin-bottom: 48px;
+}
+
+.hero-pills {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.pill {
+  font-family: 'League Spartan', sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 8px 20px;
+  border: 1px solid rgba(232,213,184,0.5);
+  color: var(--cream);
+  border-radius: 0;
+  background: rgba(58,43,26,0.3);
+  transition: background 0.25s, border-color 0.25s;
+}
+
+.pill:hover {
+  background: rgba(58,43,26,0.55);
+  border-color: rgba(232,213,184,0.8);
+}
+
+.hero-scroll {
+  position: absolute;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.scroll-line {
+  width: 1px;
+  height: 48px;
+  background: linear-gradient(to bottom, rgba(232,213,184,0.7), transparent);
+  animation: scrollPulse 2s ease-in-out infinite;
+}
+
+@keyframes scrollPulse {
+  0%, 100% { opacity: 0.4; transform: scaleY(1); }
+  50% { opacity: 1; transform: scaleY(1.1); }
+}
+
+/* ─── SECTIONS ─── */
+section { position: relative; }
+
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 48px;
+}
+
+/* ─── FADE-IN ON SCROLL ─── */
+.fade-in {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.fade-in-delay-1 { transition-delay: 0.1s; }
+.fade-in-delay-2 { transition-delay: 0.2s; }
+.fade-in-delay-3 { transition-delay: 0.3s; }
+
+/* ─── PROBLEM ─── */
+.problem {
+  background: var(--off-white);
+  padding: 100px 0;
+}
+
+.section-tag {
+  font-family: 'League Spartan', sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--coral);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 40px;
+}
+
+.section-tag::after {
+  content: '';
+  display: block;
+  flex: 1;
+  max-width: 48px;
+  height: 1px;
+  background: var(--coral);
+  opacity: 0.4;
+}
+
+.big-question {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(22px, 4vw, 38px);
+  font-style: italic;
+  font-weight: 400;
+  line-height: 1.4;
+  color: var(--brown);
+  margin-bottom: 48px;
+  max-width: 860px;
+}
+
+.two-col {
+  display: block;
+  max-width: 920px;
+}
+
+.body-p {
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 1.85;
+  color: #4a3828;
+  margin-bottom: 20px;
+  max-width: 90ch;
+}
+
+.stat-block {
+  background: var(--brown);
+  color: var(--cream);
+  padding: 36px 32px;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+.stat-block:hover {
+  transform: translateY(-3px);
+}
+
+.stat-block::before {
+  content: '';
+  position: absolute;
+  top: 0; right: 0;
+  width: 100px; height: 100px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='transparent'/%3E%3Cpath d='M50 4 L96 50 L50 96 L4 50 Z' fill='none' stroke='%23E8D5B8' stroke-width='1' opacity='0.15'/%3E%3Cpath d='M50 20 L80 50 L50 80 L20 50 Z' fill='none' stroke='%23E8D5B8' stroke-width='0.8' opacity='0.15'/%3E%3Ccircle cx='50' cy='50' r='8' fill='none' stroke='%23E8D5B8' stroke-width='0.8' opacity='0.15'/%3E%3C/svg%3E");
+  background-size: 100px 100px;
+  opacity: 0.4;
+}
+
+.stat-number {
+  font-family: 'League Spartan', sans-serif;
+  font-size: 64px;
+  font-weight: 900;
+  color: var(--yellow-cream);
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
+.stat-label {
+  font-size: 15px;
+  font-weight: 300;
+  color: var(--cream);
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+
+.stat-source {
+  font-family: 'League Spartan', sans-serif;
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--tan);
+  opacity: 0.7;
+}
+
+
+.problem-chain{display:grid;grid-template-columns:repeat(3,minmax(260px,1fr));gap:20px;align-items:stretch;margin-top:32px}
+.chain-item{min-width:260px;background:var(--brown);color:var(--cream);padding:24px}
+.chain-item h3{font-family:'League Spartan',sans-serif;font-size:20px;line-height:1.2;margin-bottom:12px;color:var(--yellow-cream)}
+.chain-item p{font-size:14px;line-height:1.6;margin-bottom:14px}
+.chain-item a{font-size:10px;color:var(--yellow-cream);text-decoration:underline;opacity:.9}
+.chain-arrow{font-size:32px;color:var(--coral);font-family:'League Spartan',sans-serif}
+@media (max-width:680px){.problem-chain{grid-template-columns:1fr}.chain-arrow{text-align:center;transform:rotate(90deg)}}
+
+/* ─── TILE DIVIDER ─── */
+.tile-divider {
+  height: 60px;
+  background-color: var(--tile-bg);
+  background-image: var(--tile-svg);
+  background-size: 60px 60px;
+}
+
+/* ─── CONCEPT ─── */
+.concept {
+  background: var(--brown);
+  padding: 100px 0;
+  position: relative;
+}
+
+.concept::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='transparent'/%3E%3Cpath d='M50 4 L96 50 L50 96 L4 50 Z' fill='none' stroke='%23E8D5B8' stroke-width='0.8' opacity='0.06'/%3E%3Cpath d='M50 20 L80 50 L50 80 L20 50 Z' fill='none' stroke='%23E8D5B8' stroke-width='0.6' opacity='0.06'/%3E%3Ccircle cx='50' cy='50' r='8' fill='none' stroke='%23E8D5B8' stroke-width='0.6' opacity='0.06'/%3E%3C/svg%3E");
+  background-size: 100px 100px;
+  pointer-events: none;
+}
+
+.concept .section-tag { color: var(--coral-light); }
+.concept .section-tag::after { background: var(--coral-light); }
+
+.concept-intro {
+  display: grid;
+  grid-template-columns: 280px minmax(0, 1fr);
+  gap: 80px;
+  margin-bottom: 64px;
+  align-items: start;
+}
+
+.concept-label-big {
+  font-family: 'League Spartan', sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--coral-light);
+  display: block;
+  margin-bottom: 16px;
+}
+
+.concept-def {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(20px, 3vw, 30px);
+  font-style: italic;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--cream);
+}
+
+.concept-body {
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 1.85;
+  color: rgba(232,213,184,0.72);
+  padding-top: 8px;
+  max-width: 92ch;
+}
+
+.criteria {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+  background: rgba(232,213,184,0.08);
+}
+
+.criterion {
+  background: rgba(58,43,26,0.6);
+  padding: 36px 28px;
+  border-top: 3px solid var(--coral);
+  position: relative;
+  transition: background 0.3s ease;
+}
+
+.criterion:hover {
+  background: rgba(58,43,26,0.85);
+}
+
+.cnum {
+  font-family: 'League Spartan', sans-serif;
+  font-size: 36px;
+  font-weight: 900;
+  color: var(--coral);
+  opacity: 0.35;
+  line-height: 1;
+  margin-bottom: 16px;
+  display: block;
+}
+
+.ctitle {
+  font-family: 'League Spartan', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--cream);
+  margin-bottom: 12px;
+}
+
+.cbody {
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 1.75;
+  color: rgba(232,213,184,0.65);
+}
+
+/* ─── EVIDENCE ─── */
+.evidence {
+  background: var(--cream);
+  padding: 100px 0;
+}
+
+.evidence .section-tag { color: var(--olive); }
+.evidence .section-tag::after { background: var(--olive); }
+
+.evidence-heading {
+  font-family: 'League Spartan', sans-serif;
+  font-size: clamp(28px, 5vw, 48px);
+  font-weight: 700;
+  color: var(--brown);
+  margin-bottom: 16px;
+  line-height: 1.1;
+}
+
+.evidence-sub {
+  font-size: 16px;
+  font-weight: 300;
+  color: #6b5440;
+  margin-bottom: 56px;
+  max-width: 88ch;
+}
+
+.cases-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.case-card {
+  background: var(--off-white);
+  padding: 32px;
+  border-left: 4px solid var(--coral);
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.case-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(58,43,26,0.12);
+}
+
+.case-card:nth-child(2) { border-left-color: var(--olive); }
+.case-card:nth-child(3) { border-left-color: var(--tan); }
+.case-card:nth-child(4) { border-left-color: var(--brown); }
+
+.case-tile-corner {
+  position: absolute;
+  top: 0; right: 0;
+  width: 60px; height: 60px;
+  background-color: var(--cream);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23E8D5B8'/%3E%3Cpath d='M50 4 L96 50 L50 96 L4 50 Z' fill='none' stroke='%23C4956A' stroke-width='2'/%3E%3Cpath d='M50 20 L80 50 L50 80 L20 50 Z' fill='none' stroke='%23C4956A' stroke-width='1.5'/%3E%3Ccircle cx='50' cy='50' r='8' fill='none' stroke='%23C4956A' stroke-width='1.5'/%3E%3Ccircle cx='50' cy='50' r='3.5' fill='%23C4956A'/%3E%3C/svg%3E");
+  background-size: 60px 60px;
+  opacity: 0.5;
+}
+
+.case-location {
+  font-family: 'League Spartan', sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--coral);
+  margin-bottom: 10px;
+}
+
+.case-card:nth-child(2) .case-location { color: var(--olive); }
+.case-card:nth-child(3) .case-location { color: var(--tan); }
+.case-card:nth-child(4) .case-location { color: var(--brown); }
+
+.case-title {
+  font-family: 'League Spartan', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--brown);
+  margin-bottom: 12px;
+  line-height: 1.25;
+}
+
+.case-body {
+  font-size: 14px;
+  font-weight: 300;
+  color: #5a4030;
+  line-height: 1.75;
+  margin-bottom: 20px;
+}
+
+.case-badge {
+  display: inline-block;
+  font-family: 'League Spartan', sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 5px 14px;
+  background: var(--brown);
+  color: var(--yellow-cream);
+}
+
+/* ─── SESSION ─── */
+.session-section {
+  position: relative;
+  overflow: hidden;
+}
+
+.session-tile {
+  position: relative;
+  min-height: 520px;
+  display: flex;
+  align-items: center;
+}
+
+.session-tile-bg {
+  position: absolute;
+  inset: 0;
+  background-color: var(--tile-bg);
+  background-image: var(--tile-svg);
+  background-size: 100px 100px;
+}
+
+.session-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(58,43,26,0.88) 0%, rgba(58,43,26,0.65) 100%);
+}
+
+.session-content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  padding: 80px 40px;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.session-heading {
+  font-family: 'League Spartan', sans-serif;
+  font-size: clamp(28px, 5vw, 52px);
+  font-weight: 900;
+  color: var(--yellow-cream);
+  line-height: 1.05;
+  margin-bottom: 16px;
+  max-width: 640px;
+}
+
+.session-sub {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(16px, 2.5vw, 22px);
+  font-style: italic;
+  font-weight: 400;
+  color: var(--cream);
+  opacity: 0.8;
+  margin-bottom: 56px;
+  max-width: 500px;
+  line-height: 1.6;
+}
+
+.session-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2px;
+  margin-bottom: 56px;
+}
+
+.session-item {
+  background: rgba(240,232,192,0.08);
+  padding: 24px 20px;
+  border-top: 2px solid rgba(200,169,110,0.4);
+  transition: background 0.25s ease;
+}
+
+.session-item:hover {
+  background: rgba(240,232,192,0.13);
+}
+
+.si-label {
+  font-family: 'League Spartan', sans-serif;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--coral-light);
+  margin-bottom: 8px;
+  display: block;
+}
+
+.si-val {
+  font-size: 13px;
+  font-weight: 300;
+  color: var(--cream);
+  line-height: 1.6;
+}
+
+.closing-line {
+  font-family: 'League Spartan', sans-serif;
+  font-size: clamp(16px, 3vw, 24px);
+  font-weight: 700;
+  color: var(--yellow-cream);
+  letter-spacing: 0.02em;
+  border-top: 1px solid rgba(232,213,184,0.2);
+  padding-top: 40px;
+}
+
+/* ─── FOOTER ─── */
+footer {
+  background: var(--brown);
+  padding: 40px;
+  text-align: center;
+}
+
+.footer-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.footer-logo {
+  font-family: 'League Spartan', sans-serif;
+  font-size: 16px;
+  font-weight: 900;
+  letter-spacing: 0.05em;
+  color: var(--yellow-cream);
+}
+
+.footer-sep {
+  width: 1px;
+  height: 20px;
+  background: rgba(232,213,184,0.2);
+}
+
+.footer-text {
+  font-family: 'League Spartan', sans-serif;
+  font-size: 11px;
+  font-weight: 300;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--tan);
+  opacity: 0.6;
+}
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 900px) {
+  .concept-intro {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .two-col {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 680px) {
+  .container { padding: 0 20px; }
+  .two-col, .concept-intro, .criteria, .cases-grid, .session-grid {
+    grid-template-columns: 1fr;
+  }
+  .body-p, .concept-body, .big-question { max-width: 100%; }
+  .hero-yes { font-size: 72px; }
+  .hero-place { font-size: 64px; }
+  .session-content { padding: 60px 20px; }
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-tile-overlay"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <span class="hero-festival-tag">Proposal for FEMSTIVAL - first feminist urban design festival - 2026</span>
+    <span class="hero-yes">Yes-Place</span>
+    <div style="font-family:'Playfair Display',serif;font-size:clamp(26px,4vw,42px);font-style:italic;color:var(--cream);margin-top:16px;">Reclaiming Non-Places through Feminist Placemaking</div>
+    <div style="font-family:'League Spartan',sans-serif;font-size:12px;letter-spacing:0.15em;text-transform:uppercase;color:var(--cream);opacity:0.75;margin-top:18px;">by Siberia Morales</div>
+    <div class="hero-pills">
+      <span class="pill">Lecture + Panel Discussion</span>
+      <span class="pill">ES · EN</span>
+      <span class="pill">Feminist Urbanism</span>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- PROBLEM -->
+<section class="problem">
+  <div class="container">
+    <div class="section-tag fade-in">01 — The Problem</div>
+    <p class="big-question fade-in fade-in-delay-1">"When was the last time a space welcomed you without asking for anything in return?"</p>
+    <div class="two-col">
+      
+<div class="fade-in fade-in-delay-1">
+        <p class="body-p">As Women, we understand what our existence means in the eyes of the market: to consume or to be consumed. That same logic is reflected in the built environment and in the way our cities are planned.</p>
+        <p class="body-p">The shopping mall is perhaps its most honest expression: a space designed for flow, transactions, and brief stays. A place that welcomes our spending, but not our presence. Designed without our input and optimized without our needs in mind.</p>
+        <p class="body-p">Unfortunately, this trend is only becoming more widespread. More and more spaces are being built to maximize profit and accelerate the flow of capital rather than support the well-being of communities. It is no coincidence that, at the same time, third places, those informal, accessible gathering spaces that sustain social life and community, are disappearing.</p>
+        <p class="body-p">The demand for genuine, physical connection has never been greater, yet there are increasingly fewer places where that need can be fulfilled.</p>
+      </div>
+      </div>
+      <div class="fade-in fade-in-delay-2">
+<div class="problem-chain">
+          <div class="chain-item"><h3>Women shoulder a disproportionate share of domestic labor</h3><p>In Latin America, women spend nearly triple the time men do on unpaid care work, and 47% of women outside the labor force cite care responsibilities as their main barrier.</p><a href="https://www.ilo.org/resource/news/unpaid-care-work-prevents-708-million-women-participating-labour-market">Source: ILO / CEPAL, 2024</a></div>
+          <div class="chain-arrow">→</div>
+          <div class="chain-item"><h3>Concerns about safety make many public spaces less accessible</h3><p>9 in 10 women aged 18–29 in Lima have experienced sexual harassment in public space. In Bogotá and Mexico City, 6 in 10 women experience harassment on public transport.</p><a href="https://latinoamerica21.com/en/women-equal-in-discourse-vulnerable-in-everyday-life/">Source: Latinoamérica 21, 2026</a></div>
+          <div class="chain-arrow">→</div>
+          <div class="chain-item"><h3>Fewer third places exist within walking distance</h3><p>When third places disappear, people interact less, feel more isolated, and lose their sense of belonging.</p><a href="https://ibs.colorado.edu/new-research-on-disappearing-third-places-warns-of-health-and-equity-risks/">Source: CU Boulder, 2025</a></div>
+          <div class="chain-arrow">→</div>
+          <div class="chain-item"><h3>The shopping mall becomes the most accessible option, but access is conditioned by consumption</h3><p>The mall replaced the plaza. It looks like public space, but functions as private space.</p><a href="https://www.mdpi.com/2071-1050/13/22/12447">Source: Sustainability (MDPI), 2021</a></div>
+          <div class="chain-arrow">→</div>
+          <div class="chain-item"><h3>Opportunities for social connection and community building are diminished</h3><p>Feeling welcome in public space is associated with a 21% decrease in loneliness.</p><a href="https://worldcitiescultureforum.com/2025/09/24/loneliness-in-cities/">Source: King's College London / World Cities Culture Forum, 2025</a></div>
+      </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DIVIDER -->
+<div class="tile-divider"></div>
+
+<!-- CONCEPT -->
+<section class="concept">
+  <div class="container" style="position: relative; z-index: 1;">
+    <div class="section-tag fade-in">02 — Objectives</div>
+    <div class="concept-intro">
+      <div class="fade-in fade-in-delay-1">
+        <span class="concept-label-big">What we should aim for</span>
+        <div class="concept-def">Reclaiming the space</div>
+      </div>
+      <div class="fade-in fade-in-delay-2">
+        <p class="concept-body">Between Augé's non-place and Oldenburg's third space, there is an unoccupied territory. A space that does not just allow encounter — it actively produces it. A space that cares. A space with permanence. A space that belongs to its community.</p>
+        <p class="concept-body" style="margin-top: 16px;">Yes-Place is a spatial category defined by three simultaneous criteria. Without all three, it is just a commercial space with alternative aesthetics.</p>
+      </div>
+    </div>
+    <div class="criteria fade-in fade-in-delay-1">
+      <div class="criterion">
+        <span class="cnum">01</span>
+        <div class="ctitle">Local authorship</div>
+        <p class="cbody">Art and culture are produced in place itself — not imported, not externally validated. The creator is from here. The work speaks from here.</p>
+      </div>
+      <div class="criterion" style="border-top-color: var(--olive);">
+        <span class="cnum" style="color: var(--olive-light);">02</span>
+        <div class="ctitle">Community economy</div>
+        <p class="cbody">The economic benefits generated by cultural activation remain within the community. Value is produced for the people who built it, not extracted by external actors.</p>
+      </div>
+      <div class="criterion" style="border-top-color: var(--tan);">
+        <span class="cnum" style="color: var(--tan);">03</span>
+        <div class="ctitle">Permanence without consumption</div>
+        <p class="cbody">The space receives you even if you don't buy anything. You can stay. You can exist without justification. Being here is enough.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DIVIDER -->
+<div class="tile-divider"></div>
+
+<!-- EVIDENCE -->
+<section class="evidence">
+  <div class="container">
+    <div class="section-tag fade-in">03 — Evidence</div>
+    <h2 class="evidence-heading fade-in fade-in-delay-1">Real life cases that sustain our hypothesis</h2>
+    <p class="evidence-sub fade-in fade-in-delay-2">The concept of "Yes-Places" is not exactly new or groundbreaking. Actually, they already exist in practice. This initiative comes from the need of naming the act of reclaiming the space and transforming it back into a third space.</p>
+    <div class="cases-grid">
+      <div class="case-card fade-in fade-in-delay-1">
+        <div class="case-tile-corner"></div>
+        <div class="case-location">Bogotá, Colombia</div>
+        <div class="case-title">District Care System</div>
+        <p class="case-body">Ordinary urban infrastructure converted into territorial care hubs for women and caregivers. The care logic that public policy applies at city scale — Yes-Place brings it to a local commercial space.</p>
+        <span class="case-badge">Berlin Impact Award 2023</span>
+      </div>
+      <div class="case-card fade-in fade-in-delay-2">
+        <div class="case-tile-corner"></div>
+        <div class="case-location">Istanbul, Turkey</div>
+        <div class="case-title">Karaköy: From Commerce to Art</div>
+        <p class="case-body">Historically commercial streets transformed through collective artistic interventions. Documented academically in 2024 as a direct case of commercial-to-community spatial conversion.</p>
+        <span class="case-badge" style="background: var(--olive);">Direct empirical case</span>
+      </div>
+      <div class="case-card fade-in fade-in-delay-1">
+        <div class="case-tile-corner"></div>
+        <div class="case-location">Paris, France</div>
+        <div class="case-title">Montparnasse Tower</div>
+        <p class="case-body">Renzo Piano commissioned in 2022 to transform a 1970s shopping center into an open, people-centered pedestrian district. Even institutional architecture recognizes the commercial typology can be something else.</p>
+        <span class="case-badge" style="background: var(--tan); color: var(--brown);">Institutional scale</span>
+      </div>
+      <div class="case-card fade-in fade-in-delay-2">
+        <div class="case-tile-corner"></div>
+        <div class="case-location">Mexico City, Mexico</div>
+        <div class="case-title">UTOPÍAS Reframed</div>
+        <p class="case-body">The UTOPÍAS program — which converts public spaces into community centers — was explicitly reframed through a feminist and care-centered lens in 2023. Private commercial spaces are the logical next frontier.</p>
+        <span class="case-badge" style="background: var(--brown);">Gap Yes-Place fills</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SESSION -->
+<section class="session-section">
+  <div class="session-tile">
+    <div class="session-tile-bg"></div>
+    <div class="session-overlay"></div>
+    <div class="session-content">
+      <div class="section-tag fade-in" style="color: var(--coral-light);">04 — The Session</div>
+      <h2 class="session-heading fade-in fade-in-delay-1">Reclaiming space<br>is a feminist act.</h2>
+      <p class="session-sub fade-in fade-in-delay-2">It is refusing to let the city keep telling us we are only welcome if we consume — or if we are the product.</p>
+      <div class="session-grid fade-in fade-in-delay-1">
+        <div class="session-item">
+          <span class="si-label">Format</span>
+          <span class="si-val">Presentation + circle discussion</span>
+        </div>
+        <div class="session-item">
+          <span class="si-label">Languages</span>
+          <span class="si-val">Available in Spanish and English</span>
+        </div>
+        <div class="session-item">
+          <span class="si-label">Duration</span>
+          <span class="si-val">40–60 min presentation + 20–30 min circle discussion</span>
+        </div>
+        <div class="session-item">
+          <span class="si-label">Participatory close</span>
+          <span class="si-val">Mapping local spaces with intervention potential</span>
+        </div>
+      </div>
+      <p class="closing-line fade-in fade-in-delay-2">
+        Based on the thesis: <em style="font-family: 'Playfair Display', serif; font-weight: 400;">Yes-Places: Resignificar los No-Lugares a través del Arte.</em><br>
+        <span style="font-weight: 300; font-size: 0.75em; opacity: 0.65; letter-spacing: 0.05em;">Tipología Comercial como ejemplo de conversión a Tercer Espacio</span>
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <span class="footer-logo">YES-PLACE</span>
+    <div class="footer-sep"></div>
+    <span class="footer-text">FEMSTIVAL of the Place · 2026</span>
+    <div class="footer-sep"></div>
+    <span class="footer-text">Feminist Urbanism · Placemaking · Latin America</span>
+  </div>
+</footer>
+
+<script>
+  // Scroll-triggered fade-in
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
